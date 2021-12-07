@@ -4,7 +4,7 @@
 ## 原创
 
 #### 性能优化、监控
-[面试官：让你计算首屏时间你会怎么算](https://github.com/zxyue25/blog/issues/1)
+[别再用performance计算首屏时间了！！](https://github.com/zxyue25/blog/issues/1)
 
 ## 好文阅读
 
