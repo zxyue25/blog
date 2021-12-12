@@ -6,6 +6,7 @@
 - 性能优化、监控
   - [别再用performance计算首屏时间了！！](https://github.com/zxyue25/blog/issues/1)
 - 开发流程
+  - [原创：如何在前端团队快速落地代码规范](https://github.com/zxyue25/blog/issues/5)
   - [工作一年半，总结出这份研发流程图](https://github.com/zxyue25/blog/issues/3)
 ### 好文阅读
 - 工程化
