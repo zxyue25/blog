@@ -2,6 +2,8 @@
 
 ### CSS
   - [CSS样式隔离方案大全](https://github.com/zxyue25/blog/issues/11)
+### JS
+  - [手写Promise、then、catch、finally、all、race](https://github.com/zxyue25/blog/issues/19)
 ### 性能优化、监控
   - [别再用performance计算首屏时间了！！](https://github.com/zxyue25/blog/issues/1)
 ### 开发流程
