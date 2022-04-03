@@ -7,7 +7,7 @@
 ### React
   - [源码——React技术揭秘](https://react.iamkasong.com/)
 ### Vue
-  - [如何用 Typescript 写一个完整的 Vue 应用程序（vue-property-decorator使用指南](https://github.com/zxyue25/blog/issues/24)
+  - [如何用 Typescript 写一个完整的 Vue 应用程序（vue-property-decorator使用指南)](https://github.com/zxyue25/blog/issues/24)
 ### 性能优化、监控
   - [别再用performance计算首屏时间了！！](https://github.com/zxyue25/blog/issues/1)
 ### 开发流程
