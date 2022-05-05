@@ -1,9 +1,9 @@
 ## TypeScript
-### 背景
+### 一、背景
 JS的缺点：动态类型
 from：微软设计的
 
-### 定义
+### 二、定义
 ![img](./imgs/ts.jpg)
 以JavaScript为基础构建的语言，是JavaScript的**超集**
 - 可以在任何支持JavaScript的平台中执行
@@ -11,14 +11,14 @@ from：微软设计的
   
 > 注意：TS不能被JS解析器直接执行，需要把TS编译成JS文件（利用**TS解析器**）
 
-### TS增加了什么
+#### TS增加了什么
 - 增加了一些新类型；
 - 支持ES的新特性；
 - 添加ES不具备的新特性
 - 丰富的配置选项（ts可以编译成任何版本的js，兼容）
 - 强大的开发工具（VSCode提示）
 
-### 环境搭建
+#### 环境搭建
 TS解析器：是用node编写的，所以需要node
 
 全局安装typescript，输入`tsc -v`看到版本，证明安装成功
@@ -29,8 +29,8 @@ tsc -v
 # Version 4.2.3
 ```
 
-### 基本类型
-#### 类型声明
+### 三、基本类型
+#### 3.1 类型声明
 通过类型声明可以指定以下的类型，指定类型后，变量只能储存某种类型的值
 - 变量
 - 函数入参
@@ -49,7 +49,7 @@ function fn(参数1: 类型, 参数2: 类型): 返回值类型{
 }
 ```
 
-#### 自动类型判断
+#### 3.2 自动类型判断
 - TS拥有自动的类型判断机制
 - 当对变量的声明和赋值是同时进行的，TS编译器会自动判断变量的类型
 
@@ -85,7 +85,7 @@ function add(a: number, b: number): number {
 
 console.log(sum(124, 45))
 ```
-#### 12种类型
+#### 3.3 12种类型
 | 类型    | 描述                           | 例子          |
 | ------- | ------------------------------ | ------------- |
 | number  | 任意数字                       | 1,-22,2.5     |
@@ -214,7 +214,7 @@ student = {
     gender: Gender.FEMALE
 }
 ```
-#### 联合类型
+#### 3.4 联合类型
 ##### ｜
 表示或者
 ```ts
@@ -226,7 +226,7 @@ let width: string | number
 let people: { name: string } & { age: number }
 ``` 
 
-#### 注意点：
+#### 3.5 注意点：
 
 ##### any跟unknown的区别
 - unknown其实就是一个类型安全的any
@@ -234,7 +234,7 @@ let people: { name: string } & { age: number }
 - any，unknown都会对自身变量放弃检测，any还会对赋值的变量关闭；所以尽量用unknown
 
 
-### 类型断言
+### 四、类型断言
 可以用来告诉解析器变量的实际类型，有以下两种语法
 ```js
 // 语法1
@@ -246,10 +246,10 @@ s = n as string
 s = <string>n
 ```
 
-### ts配置文件
+### 五、ts配置文件
 `tsconfig.json`文件，执行`tsc --init`可以生成
 
-#### 配置项
+#### 5.1 配置项
 **1、include**
 - 定义希望被编译文件所在的目录
 - 默认编译目录下所有的ts文件，即`**/*`
@@ -286,8 +286,74 @@ s = <string>n
 
 **5、compilerOptions**
 - target
-  用来指定ts被编译为ES的版本
+  - 用来指定ts被编译为ES的版本
+  - 可选值：'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'.
+  > 指定ES5，是否还需要用babel转？
+  > KA项目、组件库中使用esnext，怎么配合babel转？
 - module
+  - 指定要使用的模块化规范
+  - 可选值：'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'.
+  > KA项目、组件库中使用esnext
+- lib
+  - 用来指定项目中需要使用到的库文件（宿主环境），如dom，ES5等；一般不需要配置
+  - 可选值：'es5', 'es6', 'es2015', 'es7', 'es2016', 'es2017', 'es2018', 'es2019', 'es2020', 'esnext', 'dom', 'dom.iterable'...
+- outDir
+  - 用来指定编译后文件所在目录
+- outFile
+  - 将代码合并成一个文件
+- allowJs
+  - 是否对js文件进行编译，默认值为false
+  > 为什么要设置true，设置true有什么效果，仅仅是拷贝一份？
+  > false会有什么问题嘛？
+- checkJs
+  - 是否检查js代码是否符合语法规范，默认值为false
+- removeComments
+  - 是否删除注释，默认值为false
+- noEmit
+  - 不生成编译后的文件，默认值为false
+- alwaysStrict
+  - 用来设置编译后的js文件是否开启严格模式，默认值为true
+- noImplicitAny
+  - 不允许隐式的any类型，需要显式设置类型，默认值为true
+```ts
+// 报错
+function func1(a, b) {
+    return a + b
+}
+// 不报错
+function func1(a: number, b: number) {
+    return a + b
+}
+```
+- noImplicitThis
+  - 不允许隐式的this，需要显式设置this类型，默认为true
+```ts
+// 报错
+function func2() {
+    alert(this)
+}
+// 不报错
+function func2(this: Window) {
+    alert(this)
+}
+```
+- strictNullChecks
+  - 是否严格检查空值
+```ts
+// 报错
+let box = document.getElementById("box1")
+box.addEventListener('click', () => {
+    alert('click')
+})
+// 不报错
+
+let box = document.getElementById("box1")
+box?.addEventListener('click', () => {
+    alert('click')
+})
+```
+- **strict**
+  - strict属性总开关，不用配置其他属性
   
-- 的
+#### 5.2 结合打包工具webpack使用
 
